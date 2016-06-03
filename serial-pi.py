@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from os import system
+from serialpiconfig import *
 import curses
 
 
@@ -12,17 +13,17 @@ def execute_cmd(cmd_string):
 # define the function blocks
 def dev01():
     curses.endwin()
-    execute_cmd("sudo screen -S pfsense01 /dev/ttyUSB0 115200 && sudo screen -x pfsense01")
+    execute_cmd("sudo screen -S dev01 " + dev01_device + " " + dev01_baud + " && sudo screen -x dev01")
 
 
 def dev02():
     curses.endwin()
-    execute_cmd("sudo screen -S pfsense02 /dev/ttyUSB1 115200 && sudo screen -x pfsense02")
+    execute_cmd("sudo screen -S dev02 " + dev02_device + " " + dev02_baud + " && sudo screen -x dev02")
 
 
 def dev03():
     curses.endwin()
-    execute_cmd("sudo screen -S switch /dev/ttyUSB2 115200 && sudo screen -x switch")
+    execute_cmd("sudo screen -S dev03 " + dev03_device + " " + dev03_baud + " && sudo screen -x dev03")
 
 
 def resume():
@@ -37,13 +38,15 @@ def shell():
 
 def draw_menu(screen):
     screen.border(0)
-    screen.addstr(2, 2, "Please enter a number...")
-    screen.addstr(4, 4, "1 - Firewall 01")
-    screen.addstr(5, 4, "2 - Firewall 02")
-    screen.addstr(6, 4, "3 - Switch")
-    screen.addstr(8, 4, "5 - Resume session")
-    screen.addstr(9, 4, "6 - Shell")
-    screen.addstr(12, 4, "q - Quit")
+    screen.addstr(0, 2, "serial-pi - https://github.com/mvelten/serial-pi")
+    screen.addstr(2, 2, "Please press a key...")
+    screen.addstr(4, 4, "1 : " + dev01_name)
+    screen.addstr(5, 4, "2 : " + dev02_name)
+    screen.addstr(6, 4, "3 : " + dev03_name)
+    screen.addstr(8, 4, "5 : Resume broken/detached session")
+    screen.addstr(9, 4, "6 : Shell")
+    screen.addstr(11, 4, "q : Quit")
+    screen.addstr(13, 4, "> ")
 
 
 #
@@ -59,7 +62,7 @@ if __name__ == '__main__':
         screen.clear()
         draw_menu(screen)
         if wrong_key:
-            screen.addstr(14, 6, "unknown key")
+            screen.addstr(15, 6, "unknown key")
         screen.refresh()
 
         # map the inputs to the functions

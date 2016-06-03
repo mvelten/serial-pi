@@ -1,0 +1,10 @@
+# define Names, devices and parameters
+dev01_name = "Serial Device No 1"
+dev01_device = "/dev/ttyUSB0"
+dev01_baud = "115200"
+dev02_name = "Serial Device No 2"
+dev02_device = "/dev/ttyUSB1"
+dev02_baud = "9600"
+dev03_name = "Serial Device No 3"
+dev03_device = "/dev/ttyUSB2"
+dev03_baud = "115200"
