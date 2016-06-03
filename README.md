@@ -12,10 +12,12 @@ serialpiconfig.py needs to be modified to your needs. Just change the
 values of name and device-files.
 
 `$ git clone https://github.com/mvelten/serial-pi.git`
+
 `$ cd serial-pi`
 
 ### create configuration
 `$ cp serialpiconfig.py.example serialpiconfig.py`
+
 `$ vi serialpiconfig.py`
 
 ## auto install
@@ -25,9 +27,13 @@ values of name and device-files.
 ### optional: place ssh public key
 Copy your public ssh key (identity.pub) to the device
 `$ mkdir .ssh`
+
 `$ chmod 700 .ssh`
+
 `$ cd .ssh`
+
 `$ touch authorized_keys`
+
 `$ chmod 600 authorized_keys`
 `$ cat ../identity.pub >> authorized_keys`
 
