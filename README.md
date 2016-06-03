@@ -35,6 +35,7 @@ Copy your public ssh key (identity.pub) to the device
 `$ touch authorized_keys`
 
 `$ chmod 600 authorized_keys`
+
 `$ cat ../identity.pub >> authorized_keys`
 
 
