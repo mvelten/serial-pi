@@ -20,9 +20,12 @@ cp serial-pi.py /usr/local/bin/serial-pi.py
 cp serialpiconfig.py /usr/local/bin/serialpiconfig.py
 
 # create user console
-useradd -s /usr/local/bin/serial-pi.py -m -d /home/console -c "serial console" console
-echo "Enter new password for user console"
-passwd console
+if ! grep -q console /etc/passwd
+then
+    useradd -s /usr/local/bin/serial-pi.py -m -d /home/console -c "serial console" console
+    echo "Enter new password for user console"
+    passwd console
+fi
 
 # grant admin rights without password to console
 if ! grep -q console /etc/sudoers
